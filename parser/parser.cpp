@@ -1,4 +1,4 @@
-#include "parser.h"
+#include "parser.hpp"
 
 #include <vector>
 #include <iostream>
@@ -7,7 +7,7 @@ using namespace parsing;
 using namespace std;
 
 
-void Parser::process(vector<char> bytes)
+CAFF Parser::process(vector<char> bytes)
 {
     cout << "\nThe content of the file: \n\n";
 
@@ -29,4 +29,7 @@ void Parser::process(vector<char> bytes)
     cout << "length = " << length;
 
     // switch case ID = 1, 2, 3 ...
+
+    CAFF caff;
+    return caff;
 }

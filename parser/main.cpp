@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "parser.h"
+#include "parser.hpp"
+#include "caff.hpp"
 
 using namespace std;
 using namespace parsing;
@@ -30,7 +31,7 @@ int main(int argc, char* argv[]) {
 
     try{
         Parser parser;
-        parser.process(bytes);
+        CAFF caff = parser.process(bytes);
     }
     catch(const char* msg){
         cerr << msg << endl;
