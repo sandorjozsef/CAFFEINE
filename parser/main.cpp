@@ -1,33 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include "parser.h"
 
 using namespace std;
-
-void parse(vector<char> bytes){
-
-    cout << "\nThe content of the file: \n\n";
-
-    int ID = bytes[0];
-    if ( ID >= 1 && ID <= 3){
-        cout << "ID = " << ID << endl;
-    }
-    else{
-        throw "Invalid ID";
-    }
-
-    // TODO: int is enough for 8 byte integer
-    // TODO: checking long enough the bytes vector ??
-    int length = 0;
-    for (int i = 0; i < 8; i++){
-        length += (bytes[i+1] << (i * 8)); // bit shifting
-    }
-    
-    cout << "length = " << length;
-
-    // switch case ID = 1, 2, 3 ...
-    
-}
+using namespace parsing;
 
 int main(int argc, char* argv[]) {
 
@@ -52,7 +29,8 @@ int main(int argc, char* argv[]) {
     inFile.close();
 
     try{
-        parse(bytes);
+        Parser parser;
+        parser.process(bytes);
     }
     catch(const char* msg){
         cerr << msg << endl;
