@@ -4,10 +4,13 @@
 
 namespace parsing
 {
-    class CAFF_BLOCK
+    class CAFF_BLOCK: public Parsable
     {
-        int ID;
-        Parsable& data;
+        public:
+            int ID;
+            int length;
+            Parsable* data;
+            std::vector<char> parse(std::vector<char> bytes);
     };
 }
 
