@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CAFF_BLOCK_HPP
+#define CAFF_BLOCK_HPP
 
 #include "parsable.hpp"
 
@@ -10,7 +11,8 @@ namespace parsing
             int ID;
             int length;
             Parsable* data;
-            std::vector<char> parse(std::vector<char> bytes);
+            std::vector<unsigned char> parse(std::vector<unsigned char> bytes);
     };
 }
 
+#endif

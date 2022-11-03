@@ -8,14 +8,20 @@ using namespace parsing;
 using namespace std;
 
 
-CAFF Parser::process(vector<char> bytes)
+CAFF Parser::process(vector<unsigned char> bytes)
 {
-    cout << "\nThe content of the file: \n\n";
-
-    CAFF_BLOCK block;
-    vector<char> unprocessed_bytes = block.parse(bytes);
+    cout << "\nParsing the file: \n\n";
     
-
     CAFF caff;
+
+    while( bytes.size() > 0 ){
+
+        CAFF_BLOCK block;
+        bytes = block.parse(bytes);
+        cout << "\tID: " << block.ID << endl;
+        cout << "\tlength: " << block.length << endl;
+        caff.blocks.push_back(block);
+    }
+    
     return caff;
 }

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CAFF_HPP
+#define CAFF_HPP
 
 #include <vector>
 
@@ -13,3 +14,5 @@ namespace parsing{
     };
 
 }
+
+#endif

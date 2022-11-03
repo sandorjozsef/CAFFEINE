@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PARSER_HPP
+#define PARSER_HPP
 
 #include <vector>
 #include "caff.hpp"
@@ -8,7 +9,8 @@ namespace parsing
     class Parser
     {
         public:
-            CAFF process(std::vector<char> bytes);
+            CAFF process(std::vector<unsigned char> bytes);
     };
 }
 
+#endif

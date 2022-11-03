@@ -7,7 +7,7 @@
 using namespace std;
 using namespace parsing;
 
-int main(int argc, char* argv[]) {
+int main(int argc,char* argv[]) {
 
     cout << "Number of arguments (argc) is " << argc << endl;
     cout << "Program name is " << argv[0];
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
         return 1;
 	}
 
-    vector<char> bytes((istreambuf_iterator<char>(inFile)), (istreambuf_iterator<char>()));
+    vector<unsigned char> bytes((istreambuf_iterator<char>(inFile)), (istreambuf_iterator<char>()));
 
     inFile.close();
 
@@ -33,15 +33,13 @@ int main(int argc, char* argv[]) {
         Parser parser;
         CAFF caff = parser.process(bytes);
     }
-    catch(const char* msg){
-        cerr << msg << endl;
+    catch(exception &e){ 
+        cerr << "Caught an exception: " << e.what();
     }
     catch(...){
-        cerr << "Caught an exception.";
+        cerr << "Something went wrong!";
     }
     
-
-
 
     cout << endl;
     return 0;
