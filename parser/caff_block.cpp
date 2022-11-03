@@ -49,9 +49,6 @@ vector<unsigned char> CAFF_BLOCK::parse(vector<unsigned char> bytes)
     case 3:
         data = new CAFF_ANIMATION();
         break;
-    
-    default:
-        break;
     }
 
     vector<unsigned char> unprocessed = data->parse(data_bytes); // if everything is fine: unprocessed vector is empty

@@ -7,7 +7,7 @@
 using namespace std;
 using namespace parsing;
 
-int main(int argc,char* argv[]) {
+int main(int argc, char* argv[]) {
 
     cout << "Number of arguments (argc) is " << argc << endl;
     cout << "Program name is " << argv[0];
@@ -32,6 +32,8 @@ int main(int argc,char* argv[]) {
     try{
         Parser parser;
         CAFF caff = parser.process(bytes);
+        
+
     }
     catch(exception &e){ 
         cerr << "Caught an exception: " << e.what();

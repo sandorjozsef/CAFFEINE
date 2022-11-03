@@ -2,6 +2,7 @@
 #define CAFF_ANIMATION_HPP
 
 #include "parsable.hpp"
+#include "ciff.hpp"
 
 namespace parsing
 {
@@ -9,7 +10,7 @@ namespace parsing
     {
         public:
             int duration;
-            //TODO: CIFF
+            CIFF ciff;
             std::vector<unsigned char> parse(std::vector<unsigned char> bytes);
     };
 }
