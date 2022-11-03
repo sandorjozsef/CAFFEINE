@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
     try{
         Parser parser;
         CAFF caff = parser.process(bytes);
-        
+        // do something with the parsed caff ...
 
     }
     catch(exception &e){ 
