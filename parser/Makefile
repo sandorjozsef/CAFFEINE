@@ -1,39 +1,10 @@
+ifeq ($(OS),Windows_NT) 
+    detected_OS := Windows
+else
+    detected_OS := $(shell sh -c 'uname 2>/dev/null || echo Unknown')
+endif
+
 CC = g++
-
-# Turn on all warnings to help ensure the underlying code is secure.
-PROTECTIONS = -Wall -Wextra
-
-# Warn about uses of format functions that represent possible security problems.
-PROTECTIONS += -Wformat-security
-
-# Warn on unsign/sign conversion.
-PROTECTIONS += -Wconversion -Wsign-conversion
-
-# Compile for 64-bit to take max advantage of address space (important for ASLR; more virtual address space to chose from when randomising layout).
-PROTECTIONS += -m64
-
-# Stack smashing protection.
-PROTECTIONS += -fstack-protector-all
-
-# Defeats a class of attacks called stack clashing.
-PROTECTIONS += -fstack-clash-protection
-
-# Required to obtain the full security benefits of ASLR.
-PROTECTIONS += -pie -fPIE
-
-# Buffer overflow checks
-PROTECTIONS += -D_FORTIFY_SOURCE=2
-
-# RELRO marks various ELF memory sections read­only
-PROTECTIONS += -Wl,-z,relro,-z,now
-
-# Non-executable stack. 
-PROTECTIONS += -Wl,-z,noexecstack
-
-# Enable code instrumentation of control-flow transfers to increase program security by checking that target addresses of control-flow transfer instructions (such as indirect function call, function return, indirect jump) are valid. 
-PROTECTIONS += -fcf-protection=full
-
-ENABLE_ASLR = sudo sysctl -w kernel.randomize_va_space=2
 
 SOURCES = main.cpp
 SOURCES += parser.hpp
@@ -51,11 +22,57 @@ SOURCES += caff_animation.cpp
 SOURCES += ciff.hpp
 SOURCES += ciff.cpp
 
-TARGET = parser.exe
+ifeq ($(detected_OS),Linux)
+
+	TARGET = parser.out
+
+	DEL = -rm
+
+		# Turn on all warnings to help ensure the underlying code is secure.
+	PROTECTIONS = -Wall -Wextra
+
+	# Warn about uses of format functions that represent possible security problems.
+	PROTECTIONS += -Wformat-security
+
+	# Warn on unsign/sign conversion.
+	PROTECTIONS += -Wconversion -Wsign-conversion
+
+	# Compile for 64-bit to take max advantage of address space (important for ASLR; more virtual address space to chose from when randomising layout).
+	PROTECTIONS += -m64
+
+	# Stack smashing protection.
+	PROTECTIONS += -fstack-protector-all
+
+	# Defeats a class of attacks called stack clashing.
+	PROTECTIONS += -fstack-clash-protection
+
+	# Required to obtain the full security benefits of ASLR.
+	PROTECTIONS += -pie -fPIE
+
+	# Buffer overflow checks
+	PROTECTIONS += -D_FORTIFY_SOURCE=2
+
+	# RELRO marks various ELF memory sections read­only
+	PROTECTIONS += -Wl,-z,relro,-z,now
+
+	# Non-executable stack. 
+	PROTECTIONS += -Wl,-z,noexecstack
+
+	ENABLE_ASLR = sudo sysctl -w kernel.randomize_va_space=2
+
+	# Enable code instrumentation of control-flow transfers to increase program security by checking that target addresses of control-flow transfer instructions (such as indirect function call, function return, indirect jump) are valid. 
+	PROTECTIONS += -fcf-protection=full
+
+else
+
+	TARGET = parser.exe
+	DEL = -del
+
+endif
 
 $(TARGET): $(SOURCES)              
 	$(CC) $(PROTECTIONS) $? -o $@
 	$(ENABLE_ASLR)
 
 clean:
-	-rm parser.exe
+	$(DEL) $(TARGET)
