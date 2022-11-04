@@ -47,7 +47,7 @@ vector<unsigned char> CAFF_CREDITS::parse(vector<unsigned char> bytes)
     }
     bytes.erase(bytes.begin(), bytes.begin() + creator_len);
 
-    if (bytes.size() != (size_t)0)
+    if (bytes.size() != 0)
     {
         throw invalid_argument("CAFF_CREDITS invalid creator length!");
     }
