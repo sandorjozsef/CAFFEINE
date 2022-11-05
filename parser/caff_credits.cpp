@@ -7,7 +7,7 @@
 using namespace parsing;
 using namespace std;
 
-vector<unsigned char> CAFF_CREDITS::parse(vector<unsigned char> bytes)
+void CAFF_CREDITS::parse(vector<unsigned char>& bytes)
 {
 
     cout << "\tCAFF CREDITS parsing ..." << endl;
@@ -60,5 +60,4 @@ vector<unsigned char> CAFF_CREDITS::parse(vector<unsigned char> bytes)
     cout << "\tLength of creator: " << creator_len << endl;
     cout << "\tCreator: " << creator << endl;
 
-    return bytes;
 }

@@ -6,7 +6,7 @@
 using namespace parsing;
 using namespace std;
 
-vector<unsigned char> CAFF_ANIMATION::parse(vector<unsigned char> bytes)
+void CAFF_ANIMATION::parse(vector<unsigned char>& bytes)
 {
     cout << "\tCAFF ANIMATION parsing ..." << endl;
 
@@ -31,7 +31,6 @@ vector<unsigned char> CAFF_ANIMATION::parse(vector<unsigned char> bytes)
 
     ciff = CIFF();
 
-    bytes = ciff.parse(bytes);
+    ciff.parse(bytes);
 
-    return bytes;
 }

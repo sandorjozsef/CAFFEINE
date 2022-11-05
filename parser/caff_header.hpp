@@ -13,7 +13,7 @@ namespace parsing
             std::string magic;
             int header_size;
             int num_anim;
-            std::vector<unsigned char> parse(std::vector<unsigned char> bytes);
+            void parse(std::vector<unsigned char>& bytes);
     };
 }
 

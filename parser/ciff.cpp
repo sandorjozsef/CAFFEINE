@@ -10,7 +10,7 @@
 using namespace parsing;
 using namespace std;
 
-vector<unsigned char> CIFF::parse(vector<unsigned char> bytes)
+void CIFF::parse(vector<unsigned char>& bytes)
 {
     cout << "\t\tCIFF parsing ..." << endl;
 
@@ -132,7 +132,11 @@ vector<unsigned char> CIFF::parse(vector<unsigned char> bytes)
     }
     cout << endl;
 
-    EasyBMP::Image img(width, height, "sample" + to_string(rand() % 100000) + ".bmp");
+}
+
+void CIFF::save_as_bmp(string file_name)
+{
+    EasyBMP::Image img(width, height, file_name);
 
     int offset = 0;
     for (int x = 0; x < height; ++x)
@@ -145,7 +149,4 @@ vector<unsigned char> CIFF::parse(vector<unsigned char> bytes)
         }
     }
     img.Write();
-
-
-    return bytes;
 }

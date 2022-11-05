@@ -5,12 +5,11 @@
 
 #include <vector>
 #include <iostream>
-#include <cmath>
 
 using namespace parsing;
 using namespace std;
 
-vector<unsigned char> CAFF_BLOCK::parse(vector<unsigned char> bytes)
+void CAFF_BLOCK::parse(vector<unsigned char>& bytes)
 {
 
     cout << "\nCAFF BLOCK parsing ..." << endl;
@@ -24,13 +23,14 @@ vector<unsigned char> CAFF_BLOCK::parse(vector<unsigned char> bytes)
         throw invalid_argument("Invalid ID: " + to_string(ID));
     }
 
+    bytes.erase(bytes.begin(), bytes.begin() + 1); // delete first processed element from bytes
+
     length = 0;
-    vector<unsigned char> length_bytes(bytes.begin() + 1, bytes.begin() + 9); 
     for (int i = 0; i < 8; i++){
-        length += (length_bytes[i] << (i * 8)); // conversion to decimal
+        length += (bytes[i] << (i * 8)); // conversion to decimal
     }
     
-    bytes.erase(bytes.begin(), bytes.begin() + 9); // delete first 1 + 8 elements from bytes
+    bytes.erase(bytes.begin(), bytes.begin() + 8); // delete first 8 elements from bytes
 
     if (static_cast<int>(bytes.size()) < length){
         throw invalid_argument("CAFF_BLOCK too short (actual size < length)");
@@ -56,15 +56,13 @@ vector<unsigned char> CAFF_BLOCK::parse(vector<unsigned char> bytes)
         break;
     }
 
-    vector<unsigned char> unprocessed = data->parse(data_bytes); // if everything is fine: unprocessed vector is empty
+    data->parse(data_bytes); // if everything is fine: all data_bytes is processed
 
-    if (unprocessed.size() != 0)
+    if (data_bytes.size() != 0)
     {
-        cout << unprocessed.size();
         throw invalid_argument("CAFF data content is too long.");
     }
 
     bytes.erase(bytes.begin(), bytes.begin() + length); // delete processed data from bytes
     
-    return bytes;
 }
