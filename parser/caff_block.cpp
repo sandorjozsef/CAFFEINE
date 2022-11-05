@@ -25,7 +25,7 @@ vector<unsigned char> CAFF_BLOCK::parse(vector<unsigned char> bytes)
     length = 0;
     vector<unsigned char> length_bytes(bytes.begin() + 1, bytes.begin() + 9); 
     for (int i = 0; i < 8; i++){
-        length += (length_bytes[i] * pow(256, i)); // conversion to decimal
+        length += (length_bytes[i] << (i * 8)); // conversion to decimal
     }
     
     bytes.erase(bytes.begin(), bytes.begin() + 9); // delete first 1 + 8 elements from bytes
