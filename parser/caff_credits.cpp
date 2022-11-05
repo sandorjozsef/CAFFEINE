@@ -10,7 +10,7 @@ using namespace std;
 vector<unsigned char> CAFF_CREDITS::parse(vector<unsigned char> bytes)
 {
 
-    cout << "... place of parsing CAFF_CREDITS ..." << endl;
+    cout << "\tCAFF CREDITS parsing ..." << endl;
 
     if (bytes.size() < 14)
     {
@@ -52,13 +52,13 @@ vector<unsigned char> CAFF_CREDITS::parse(vector<unsigned char> bytes)
         throw invalid_argument("CAFF_CREDITS invalid creator length!");
     }
 
-    cout << YY << endl;
-    cout << M << endl;
-    cout << D << endl;
-    cout << h << endl;
-    cout << m << endl;
-    cout << creator_len << endl;
-    cout << creator << endl;
+    cout << "\tY: " << YY << endl;
+    cout << "\tD: " << D << endl;
+    cout << "\tM: " << M << endl;
+    cout << "\th: " << h << endl;
+    cout << "\tm: " << m << endl;
+    cout << "\tLength of creator: " << creator_len << endl;
+    cout << "\tCreator: " << creator << endl;
 
     return bytes;
 }

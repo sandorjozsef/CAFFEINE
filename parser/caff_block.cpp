@@ -13,6 +13,8 @@ using namespace std;
 vector<unsigned char> CAFF_BLOCK::parse(vector<unsigned char> bytes)
 {
 
+    cout << "\nCAFF BLOCK parsing ..." << endl;
+
     if (bytes.size() < 9){
         throw invalid_argument("CAFF_BLOCK too short (< 9)");
     }
@@ -34,6 +36,9 @@ vector<unsigned char> CAFF_BLOCK::parse(vector<unsigned char> bytes)
         throw invalid_argument("CAFF_BLOCK too short (actual size < length)");
     }
 
+    cout << "ID: " << ID << endl;
+    cout << "Length: " << length << endl;
+
     vector<unsigned char> data_bytes(bytes.begin(), bytes.begin() + length); // copy unprocessed data for further parsing
 
     switch (ID)
@@ -53,6 +58,11 @@ vector<unsigned char> CAFF_BLOCK::parse(vector<unsigned char> bytes)
 
     vector<unsigned char> unprocessed = data->parse(data_bytes); // if everything is fine: unprocessed vector is empty
 
+    if (unprocessed.size() != 0)
+    {
+        cout << unprocessed.size();
+        throw invalid_argument("CAFF data content is too long.");
+    }
 
     bytes.erase(bytes.begin(), bytes.begin() + length); // delete processed data from bytes
     

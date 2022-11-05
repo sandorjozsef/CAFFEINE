@@ -10,7 +10,7 @@ using namespace std;
 
 CAFF Parser::process(vector<unsigned char> bytes)
 {
-    cout << "\nParsing the file: \n\n";
+    cout << "\nParsing the file: \n";
     
     CAFF caff;
 
@@ -18,8 +18,6 @@ CAFF Parser::process(vector<unsigned char> bytes)
 
         CAFF_BLOCK block;
         bytes = block.parse(bytes);
-        cout << "\tID: " << block.ID << endl;
-        cout << "\tlength: " << block.length << endl;
         caff.blocks.push_back(block);
     }
     

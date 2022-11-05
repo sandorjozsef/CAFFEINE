@@ -12,7 +12,7 @@ using namespace std;
 
 vector<unsigned char> CIFF::parse(vector<unsigned char> bytes)
 {
-    cout << "... place of parsing CIFF ..." << endl;
+    cout << "\t\tCIFF parsing ..." << endl;
 
     if (bytes.size() < 36)
     {
@@ -120,14 +120,17 @@ vector<unsigned char> CIFF::parse(vector<unsigned char> bytes)
     pixels = vector<unsigned char>(bytes);
     bytes.erase(bytes.begin(), bytes.end());
 
-    cout << header_size << endl;
-    cout << content_size << endl;
-    cout << width << endl;
-    cout << height << endl;
-    cout << caption << endl;
+    cout << "\t\tMagic: " << magic << endl;
+    cout << "\t\tHeader size: " << header_size << endl;
+    cout << "\t\tContent size: "<< content_size << endl;
+    cout << "\t\tWidth: " << width << endl;
+    cout << "\t\tHeight: " << height << endl;
+    cout << "\t\tCaption: " << caption << endl;
+    cout << "\t\tTags: ";
     for (string tag : tags){
-        cout << tag << endl;
+        cout << tag << "; ";
     }
+    cout << endl;
 
     EasyBMP::Image img(width, height, "sample" + to_string(rand() % 100000) + ".bmp");
 

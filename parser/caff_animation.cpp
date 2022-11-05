@@ -8,8 +8,7 @@ using namespace std;
 
 vector<unsigned char> CAFF_ANIMATION::parse(vector<unsigned char> bytes)
 {
-
-    cout << "... place of parsing CAFF_ANIMATION ..." << endl;
+    cout << "\tCAFF ANIMATION parsing ..." << endl;
 
     if (bytes.size() < 8)
     {
@@ -23,13 +22,16 @@ vector<unsigned char> CAFF_ANIMATION::parse(vector<unsigned char> bytes)
     }
     bytes.erase(bytes.begin(), bytes.begin() + 8);
 
+    cout << "\tDuration: " << duration << endl;
+
     if (bytes.size() <= 0)
     {
         throw invalid_argument("CAFF_ANIMATION no CIFF provided!");
     }
 
     ciff = CIFF();
-    ciff.parse(bytes);
+
+    bytes = ciff.parse(bytes);
 
     return bytes;
 }
