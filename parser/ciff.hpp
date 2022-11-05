@@ -19,7 +19,8 @@ namespace parsing
             std::string caption;
             std::vector<std::string> tags;
             std::vector<unsigned char> pixels;
-            std::vector<unsigned char> parse(std::vector<unsigned char> bytes);
+            void parse(std::vector<unsigned char>& bytes);
+            void save_as_bmp(std::string file_name);
     };
 }
 

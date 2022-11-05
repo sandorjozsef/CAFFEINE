@@ -11,7 +11,7 @@ namespace parsing
         public:
             int duration;
             CIFF ciff;
-            std::vector<unsigned char> parse(std::vector<unsigned char> bytes);
+            void parse(std::vector<unsigned char>& bytes);
     };
 }
 

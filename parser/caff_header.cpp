@@ -8,7 +8,7 @@
 using namespace parsing;
 using namespace std;
 
-vector<unsigned char> CAFF_HEADER::parse(vector<unsigned char> bytes)
+void CAFF_HEADER::parse(vector<unsigned char>& bytes)
 {
     cout << "\tCAFF HEADER parsing ..." << endl;
 
@@ -53,5 +53,4 @@ vector<unsigned char> CAFF_HEADER::parse(vector<unsigned char> bytes)
     //Delete the last sequence
     bytes.erase(bytes.begin(), bytes.begin() + 8);
     
-    return bytes;
 }

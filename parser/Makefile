@@ -8,27 +8,20 @@ CC = g++
 CCFLAGS = -g -Wall -std=c++2a
 
 SOURCES = main.cpp
-SOURCES += parser.hpp
 SOURCES += parser.cpp
-SOURCES += parsable.hpp
-SOURCES += caff_block.hpp
 SOURCES += caff_block.cpp
-SOURCES += caff.hpp
-SOURCES += caff_header.hpp
 SOURCES += caff_header.cpp
-SOURCES += caff_credits.hpp
 SOURCES += caff_credits.cpp
-SOURCES += caff_animation.hpp
 SOURCES += caff_animation.cpp
-SOURCES += ciff.hpp
 SOURCES += ciff.cpp
+SOURCES += caff.cpp
 
 ifeq ($(detected_OS),Linux)
 
 TARGET = parser.out
 DEL = -rm
 
-	# Turn on all warnings to help ensure the underlying code is secure.
+# Turn on all warnings to help ensure the underlying code is secure.
 PROTECTIONS = -Wextra
 
 # Warn about uses of format functions that represent possible security problems.
@@ -75,4 +68,4 @@ $(TARGET): $(SOURCES)
 	$(ENABLE_ASLR)
 
 clean:
-	$(DEL) $(TARGET)
+	$(DEL) $(TARGET) *.bmp

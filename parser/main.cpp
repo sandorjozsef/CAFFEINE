@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     cout << "Program name is " << argv[0];
     cout << "\nOther arguments are: " << endl;
     for (int i = 1; i < argc; i++)
-    cout << "\targv[" << i << "] = " << argv[i] << endl;
+        cout << "\targv[" << i << "] = " << argv[i] << endl;
 
     string path = argv[1];
     cout << "The given path to file: " << path << endl;
@@ -30,9 +30,10 @@ int main(int argc, char* argv[]) {
     inFile.close();
 
     try{
+
         Parser parser;
         CAFF caff = parser.process(bytes);
-        // do something with the parsed caff ...
+        caff.preview();
 
     }
     catch(exception &e){ 

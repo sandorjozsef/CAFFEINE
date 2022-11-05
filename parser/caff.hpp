@@ -11,6 +11,7 @@ namespace parsing{
     {
         public:
             std::vector<CAFF_BLOCK> blocks;
+            void preview();
     };
 
 }

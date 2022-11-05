@@ -17,7 +17,7 @@ CAFF Parser::process(vector<unsigned char> bytes)
     while( bytes.size() > 0 ){
 
         CAFF_BLOCK block;
-        bytes = block.parse(bytes);
+        block.parse(bytes);
         caff.blocks.push_back(block);
     }
     

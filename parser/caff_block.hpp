@@ -11,7 +11,7 @@ namespace parsing
             int ID;
             int length;
             Parsable* data;
-            std::vector<unsigned char> parse(std::vector<unsigned char> bytes);
+            void parse(std::vector<unsigned char>& bytes);
     };
 }
 
