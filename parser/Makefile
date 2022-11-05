@@ -5,7 +5,7 @@ else
 endif
 
 CC = g++
-CCFLAGS = -g -Wall -std=c++20
+CCFLAGS = -g -Wall -std=c++2a
 
 SOURCES = main.cpp
 SOURCES += parser.hpp
