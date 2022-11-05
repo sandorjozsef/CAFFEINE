@@ -33,6 +33,7 @@ int main(int argc, char* argv[]) {
 
         Parser parser;
         CAFF caff = parser.process(bytes);
+        parser.post_process(caff);
         caff.preview();
 
     }

@@ -9,7 +9,8 @@ namespace parsing
     class Parser
     {
         public:
-            CAFF process(std::vector<unsigned char> bytes);
+            CAFF process(std::vector<unsigned char>& bytes);
+            void post_process(CAFF& caff);
     };
 }
 
