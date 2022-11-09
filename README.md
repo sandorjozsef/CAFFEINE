@@ -7,7 +7,7 @@ A Computer Security Project.
 make
 
 ### To run (from parser directory):
-./parser.exe <path_to_caff_file>
+./parser.out <path_to_caff_file>
 
 - For example:
 
