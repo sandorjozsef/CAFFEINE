@@ -60,7 +60,7 @@ void Parser::post_process(CAFF& caff)
         }
     }
 
-    auto header_block = dynamic_cast<CAFF_HEADER*>(blocks[0].data);
+    auto header_block = dynamic_cast<CAFF_HEADER*>(blocks[0].data.get());
     if (num_anim != header_block->num_anim)
     {
         throw invalid_argument("The actual nr. of animation blocks does not correspond with the nr. that was defined in header");

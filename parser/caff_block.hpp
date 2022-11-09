@@ -2,6 +2,7 @@
 #define CAFF_BLOCK_HPP
 
 #include "parsable.hpp"
+#include <memory>
 
 namespace parsing
 {
@@ -10,7 +11,7 @@ namespace parsing
         public:
             int ID;
             int length;
-            Parsable* data;
+            std::shared_ptr<Parsable> data;
             void parse(std::vector<unsigned char>& bytes);
     };
 }

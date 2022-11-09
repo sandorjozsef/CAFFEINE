@@ -44,15 +44,15 @@ void CAFF_BLOCK::parse(vector<unsigned char>& bytes)
     switch (ID)
     {
     case 1:
-        data = new CAFF_HEADER();
+        data = make_shared<CAFF_HEADER>();
         break;
 
     case 2:
-        data = new CAFF_CREDITS();
+        data = make_shared<CAFF_CREDITS>();
         break;
 
     case 3:
-        data = new CAFF_ANIMATION();
+        data = make_shared<CAFF_ANIMATION>();
         break;
     }
 

@@ -11,7 +11,7 @@ void CAFF::preview()
     {
         if (block.ID == 3)
         {
-            CAFF_ANIMATION* caff_animation = dynamic_cast<CAFF_ANIMATION*>(block.data);
+            CAFF_ANIMATION* caff_animation = dynamic_cast<CAFF_ANIMATION*>(block.data.get());
             caff_animation->ciff.save_as_bmp(to_string(seq_nr) + ".bmp");
             seq_nr++;
         }
